@@ -13,7 +13,6 @@ class Item
         publish_year = Date.today.year - date[:year]
         publish_year > 10
       end
-    
       def move_to_archive
         @archived = can_be_archived?
       end
