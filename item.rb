@@ -18,4 +18,9 @@ class Item
   def move_to_archive
     @archived = can_be_archived?
   end
+
+  def add_author=(author)
+    @author = author
+    author.items.push(self) unless author.items.include?(self)
+  end
 end
