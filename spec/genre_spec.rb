@@ -13,5 +13,20 @@ describe Genre do
       genre = Genre.new(name)
       expect(genre.instance_variable_get(:@id)).to be_between(1, 1000)
     end
+
+    it 'initializes an empty array for items' do
+      name = 'Gengeton'
+      genre = Genre.new(name)
+      expect(genre.items).to be_empty
+    end
+  end
+
+  describe '#add_item' do
+    it "adds the item to the genre's items array" do
+      genre = Genre.new('Rumba')
+      album = MusicAlbum.new('2022-01-01', true)
+      genre.add_item(album)
+      expect(genre.items).to include(album)
+    end
   end
 end
