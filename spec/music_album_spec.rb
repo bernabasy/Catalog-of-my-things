@@ -10,3 +10,4 @@ describe MusicAlbum do
       expect(album.on_spotify).to eq(on_spotify)
     end
   end
+end
