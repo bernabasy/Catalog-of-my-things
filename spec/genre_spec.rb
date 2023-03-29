@@ -22,18 +22,25 @@ describe Genre do
   end
 
   describe '#add_item' do
+    let(:genre) { Genre.new('Rumba') }
+
     it "adds the item to the genre's items array" do
-      genre = Genre.new('Rumba')
       album = MusicAlbum.new('2022-01-01', true)
       genre.add_item(album)
       expect(genre.items).to include(album)
     end
 
     it "sets the item's genre to the genre object" do
-      genre = Genre.new('Rumba')
       album = MusicAlbum.new('2022-01-01', true)
       genre.add_item(album)
       expect(album.genre).to eq(genre)
+    end
+
+    it "doesn't add the same item twice" do
+      album = MusicAlbum.new('2022-01-01', true)
+      genre.add_item(album)
+      genre.add_item(album)
+      expect(genre.items.size).to eq(2)
     end
   end
 end
