@@ -26,3 +26,8 @@ CREATE TABLE labels (
   title VARCHAR(150),
   color VARCHAR(150)
 );
+
+CREATE TABLE genres (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(255)
+);
