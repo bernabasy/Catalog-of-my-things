@@ -56,8 +56,6 @@ def store_game
   File.write('data/games.json', JSON.generate(game_store))
 end
 
-require 'json'
-
 def store_books
   book_store = @books.map do |book|
     {
@@ -95,3 +93,13 @@ def store_labels
   File.write('data/labels.json', JSON.generate(store_label))
 end
 
+def feach_labels
+  return unless File.exist?('data/labels.json')
+
+  labels = JSON.parse(File.read('data/labels.json'))
+
+  labels.each do |label|
+    label = Label.new(label['title'], label['color'])
+    @labels << label
+  end
+end
