@@ -20,9 +20,31 @@ CREATE TABLE books (
   archived BOOLEAN 
 );
 
+CREATE TABLE author (
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255)
+);
+
 -- Create Labels tables
 CREATE TABLE labels (
   id SERIAL PRIMARY KEY,
   title VARCHAR(150),
   color VARCHAR(150)
+);
+
+CREATE TABLE genres (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(255)
+);
+
+CREATE TABLE music_albums (
+  id INTEGER PRIMARY KEY,
+  genre_id INTEGER,
+  author VARCHAR(255),
+  label VARCHAR(255),
+  publish_date DATE,
+  archived BOOLEAN,
+  on_spotify BOOLEAN,
+  FOREIGN KEY (genre_id) REFERENCES genres(id)
 );
