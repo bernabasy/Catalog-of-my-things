@@ -1,5 +1,6 @@
 require_relative '../item'
 require_relative '../label'
 require_relative '../book'
+require_relative '../game'
 require 'yaml'
 require 'date'
