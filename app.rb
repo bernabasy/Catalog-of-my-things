@@ -8,7 +8,7 @@ class App
   def initialize
     @albums = []
     @genres = []
-  
+
     load_music_album
     load_genre
   end
