@@ -4,20 +4,25 @@ require_relative './author'
 require_relative './preserve_data'
 require_relative './music_album'
 require_relative './genre'
+require_relative './game'
 
 class App
-  attr_reader :albums, :genres, :books, :labels
+  attr_reader :albums, :genres, :books, :labels, :games, :authors
 
   def initialize
     @albums = []
     @genres = []
     @books = []
     @labels = []
+    @games = []
+    @authors = []
 
     feach_labels
     list_booka
     load_music_album
     load_genre
+    load_games
+    load_author
   end
 
   def list_music_albums
@@ -132,5 +137,57 @@ class App
     @genres << each_genre
     puts 'Genre successfully added'
     store_genre
+  end
+
+  def list_all_authors
+    if @authors.empty?
+      puts 'No authors yet'
+    else
+      @authors.each do |author|
+        puts "Author Name: #{author.first_name} #{author.last_name}"
+      end
+    end
+  end
+
+  def add_author
+    puts 'Author First Name: '
+    f_name = gets.chomp
+    puts 'Author Last Name: '
+    l_name = gets.chomp
+    new_author = Author.new(f_name, l_name)
+    @authors << new_author
+    puts 'Author added successfully'
+    store_author
+  end
+
+  def add_game
+    puts 'Publish Date: '
+    pub_date = gets.chomp
+    puts 'Multiplayer? (Y/N): '
+    multiplayer = gets.chomp
+    if %w[Y y].include?(multiplayer)
+      is_multiplayer = true
+    elsif %w[N n].include?(multiplayer)
+      is_multiplayer = false
+    else
+      puts "Invalid value detected: #{mutliplayer}"
+      return
+    end
+    puts 'Date last played: '
+    last_played = gets.chomp
+    new_game = Game.new(pub_date, is_multiplayer, last_played)
+    @games << new_game
+    puts 'Game added successfully'
+    store_game
+  end
+
+  def list_all_games
+    if @games.empty?
+      puts 'No games yet'
+    else
+      @games.each do |game|
+        puts "Publish Date: #{game.publish_date}, Multiplayer: #{game.multiplayer}, Last Played: #{game.last_played_at}"
+      end
+    end
   end
 end
