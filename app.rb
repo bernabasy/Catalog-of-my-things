@@ -4,7 +4,6 @@ require_relative './author'
 require_relative './preserve_data'
 require_relative './music_album'
 require_relative './genre'
-require_relative './preserve_data'
 
 class App
   attr_reader :albums, :genres, :books, :labels
@@ -27,7 +26,6 @@ class App
     else
       @albums.each do |album|
         puts "Publish Date: #{album.publish_date}, On Spotify: #{album.on_spotify}"
-
       end
     end
   end
@@ -47,7 +45,7 @@ class App
       puts 'No genres present'
     else
       @genres.each do |genre|
-        puts "ID: #{genre.id}, Genre Name: #{genre.name}"
+        puts "Genre Name: #{genre.name}"
       end
     end
   end
@@ -59,9 +57,10 @@ class App
       @books.each do |book|
         print "name: #{book.name}, publisher: #{book.publisher}, "
         puts "cover_State: #{book.cover_state}, pulish_date: #{book.publish_date}"
+      end
     end
   end
-end
+
   def add_book
     puts 'please enter book name'
     name = gets.chomp
@@ -135,4 +134,3 @@ end
     store_genre
   end
 end
-
