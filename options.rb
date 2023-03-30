@@ -30,35 +30,34 @@ class Options
   end
 
   def options
+    options_list = {
+      1 => { text: 'List music albums', action: :list_music_albums },
+      2 => { text: 'List genres', action: :list_genres },
+      3 => { text: 'List books', action: :list_books },
+      4 => { text: 'List labels', action: :list_labels },
+      5 => { text: 'List all games', action: :list_all_games },
+      6 => { text: 'List all authors', action: :list_all_authors },
+      7 => { text: 'Add music album', action: :add_music_album },
+      8 => { text: 'Add genre', action: :add_genre },
+      9 => { text: 'Add book', action: :add_book },
+      10 => { text: 'Add label', action: :add_label },
+      11 => { text: 'Add game', action: :add_game },
+      12 => { text: 'Add author', action: :add_author },
+      13 => { text: 'Exit', action: :exit }
+    }
+
     loop do
-      case options_list
-      when 1
-        @app.list_music_albums
-      when 2
-        @app.list_genres
-      when 3
-        @app.list_books
-      when 4
-        @app.list_labels
-      when 5
-        @app.list_all_games
-      when 6
-        @app.list_all_authors
-      when 7
-        @app.add_music_album
-      when 8
-        @app.add_genre
-      when 9
-        @app.add_book
-      when 10
-        @app.add_label
-      when 11
-        @app.add_game
-      when 12
-        @app.add_author
-      when 13
-        puts 'Thank you for using this app'
-        return
+      puts 'Options:'
+      options_list.each do |key, value|
+        puts "#{key}. #{value[:text]}"
+      end
+
+      input = gets.chomp.to_i
+      if options_list.key?(input)
+        action = options_list[input][:action]
+        return if action == :exit
+
+        @app.send(action)
       else
         puts 'Please choose a number between 1 and 13'
       end
