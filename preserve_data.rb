@@ -56,6 +56,8 @@ def store_game
   File.write('data/games.json', JSON.generate(game_store))
 end
 
+require 'json'
+
 def store_books
   book_store = @books.map do |book|
     {
@@ -80,3 +82,16 @@ def list_booka
     @books << book
   end
 end
+
+def store_labels
+  store_label = @labels.map do |label|
+    {
+      title: label.title,
+      color: label.color
+    }
+  end
+  FileUtils.mkdir_p('data')
+  File.new('data/music_albums.json', 'w') unless File.exist?('data/music_albums.json')
+  File.write('data/labels.json', JSON.generate(store_label))
+end
+
