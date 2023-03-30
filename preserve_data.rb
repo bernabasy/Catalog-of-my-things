@@ -7,7 +7,6 @@ def store_music_album
       on_spotify: album.on_spotify
     }
   end
-  FileUtils.mkdir_p('data')
   File.new('data/music_albums.json', 'w') unless File.exist?('data/music_albums.json')
   File.write('data/music_albums.json', JSON.generate(music_album_store))
 end
@@ -28,7 +27,6 @@ def store_genre
       name: genre.name
     }
   end
-  FileUtils.mkdir_p('data')
   File.new('data/genres.json', 'w') unless File.exist?('data/genres.json')
   File.write('data/genres.json', JSON.generate(genre_store))
 end
@@ -51,7 +49,6 @@ def store_game
       last_played_at: game.last_played_at
     }
   end
-  FileUtils.mkdir_p('data')
   File.new('data/games.json', 'w') unless File.exist?('data/games.json')
   File.write('data/games.json', JSON.generate(game_store))
 end
@@ -65,7 +62,6 @@ def store_books
       publish_date: book.publish_date
     }
   end
-  FileUtils.mkdir_p('data')
   File.new('data/books.json', 'w') unless File.exist?('data/books.json')
   File.write('data/books.json', JSON.generate(book_store))
 end
@@ -88,7 +84,6 @@ def store_labels
       color: label.color
     }
   end
-  FileUtils.mkdir_p('data')
   File.new('data/music_albums.json', 'w') unless File.exist?('data/music_albums.json')
   File.write('data/labels.json', JSON.generate(store_label))
 end

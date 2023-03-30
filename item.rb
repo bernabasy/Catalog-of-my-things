@@ -1,5 +1,3 @@
-require 'date'
-
 class Item
   attr_accessor :genre, :author, :label, :publish_date, :archived
   attr_reader :id
@@ -35,7 +33,4 @@ class Item
     @genre = genre
     genre.items.push(self) unless genre.items.include?(self)
   end
-  item = Item.new('2022-03-30')
-  item.genre = 'Science Fiction'
-  puts item.genre # Output: Science Fiction
 end
