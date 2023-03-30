@@ -1,36 +1,19 @@
 require_relative 'spec_helper'
 
-# describe Game do
-#   before :each do
-#     @new_first_game = Game.new('23/02/2000', 'Y', '2022/02/22')
-#     @new_second_game = Game.new('23/01/2010', 'Y', '2008/02/22')
-#   end
-#   describe '#can_be_archived' do
-#     it 'returns the correct archived status' do
-#       expect(@new_first_game.can_be_archived?).to be false
-#       expect(@new_second_game.can_be_archived?).to be true
-#     end
-#   end
-# end
-
-
 describe Game do
-  describe '#can_be_archived?' do
-    context 'when last_played_at is greater than 2' do
-      it 'returns true' do
-        game = Game.new('2022-01-01', true, (Time.now - 3 * 24 * 60 * 60).to_s)
-        expect(game.can_be_archived?).to be true
-      end
-    end
-    context 'when last_played_at is less than or equal to 2' do
-      it 'calls parent class can_be_archived? method' do
-        item = double('item')
-        allow(item).to receive(:can_be_archived?).and_return(false)
-        game = Game.new('2022-01-01', true, (Time.now - 2 * 24 * 60 * 60).to_s)
-        allow(game).to receive(:parent).and_return(item)
+  context '#can_be_archived when called' do
+    it 'should return false if last played date is within 2 years and published more than 10 years ago' do
+      game = Game.new('2010-03-10', 'yes', '2022-03-21')
+      result = game.can_be_archived?
 
-        expect(game.can_be_archived?).to be false
-      end
+      expect(result).to eq(false)
+    end
+
+    it 'should return true if last played date is more than 2 years and published more than 10 years ago' do
+      game = Game.new('2005-01-15', 'yes', '2019-01-01')
+      result = game.can_be_archived?
+
+      expect(result).to eq(true)
     end
   end
 end
