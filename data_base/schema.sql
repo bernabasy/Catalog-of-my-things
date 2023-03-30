@@ -17,7 +17,7 @@ CREATE TABLE books (
   publisher VARCHAR(250),
   cover_state VARCHAR(250),
   publish_date DATE,
-  archived BOOLEAN 
+  archived BOOLEAN
 );
 
 -- Create Labels tables
@@ -25,4 +25,20 @@ CREATE TABLE labels (
   id SERIAL PRIMARY KEY,
   title VARCHAR(150),
   color VARCHAR(150)
+);
+
+-- Create Game table
+CREATE TABLE game (
+    id SERIAL PRIMARY KEY,
+    multiplayer BOOLEAN,
+    last_played_at date,
+    publish_date date,
+    archived BOOLEAN
+);
+
+-- Create Author table
+CREATE TABLE author (
+    id SERIAL PRIMARY KEY,
+    first_name varchar(255),
+    last_name varchar(255)
 );
