@@ -7,6 +7,7 @@
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
+    - [🚀 demo video](#live-demo)
   - [� Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -38,11 +39,15 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **Add new students or teachers.**
-- **Add new books.**
-- **Save records of who borrowed a given book and when.**
+- [keep a record of different types of things you own]
+- [Store the data in JSON files]
+- [Add items you own]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Live-Demo <a name="Live-demo"></a>
+
+Will be uploaded when we finish
 
 <!-- GETTING STARTED -->
 
@@ -119,6 +124,8 @@ Install this project with:
 - [Add items you own]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Live-Demo <a name="Live"></a>
 
 <!-- CONTRIBUTING -->
 
