@@ -3,8 +3,8 @@ require 'json'
 def store_games
   game_store = @games.map do |game|
     {
-      publish_date: game.publish_date,
       multiplayer: game.multiplayer,
+      publish_date: game.publish_date,
       last_played_at: game.last_played_at.to_s
     }
   end
