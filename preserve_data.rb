@@ -70,3 +70,13 @@ def store_books
   File.write('data/books.json', JSON.generate(book_store))
 end
 
+def list_booka
+  return unless File.exist?('data/books.json')
+
+  books = JSON.parse(File.read('data/books.json'))
+
+  books.each do |book|
+    book = Book.new(book['name'], book['publisher'], book['cover_state'], book['publish_date'])
+    @books << book
+  end
+end
