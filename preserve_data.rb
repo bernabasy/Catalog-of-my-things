@@ -43,19 +43,6 @@ def load_genre
   end
 end
 
-def store_game
-  game_store = @games.map do |game|
-    {
-      publish_date: game.publish_date,
-      multiplayer: game.multiplayer,
-      last_played_at: game.last_played_at
-    }
-  end
-  Dir.mkdir('data') unless File.directory?('data')
-  File.new('data/games.json', 'w') unless File.exist?('data/games.json')
-  File.write('data/games.json', JSON.generate(game_store))
-end
-
 def store_books
   book_store = @books.map do |book|
     {
