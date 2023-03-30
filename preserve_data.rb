@@ -55,3 +55,18 @@ def store_game
   File.new('data/games.json', 'w') unless File.exist?('data/games.json')
   File.write('data/games.json', JSON.generate(game_store))
 end
+
+def store_books
+  book_store = @books.map do |book|
+    {
+      name: book.name,
+      publisher: book.publisher,
+      cover_state: book.cover_state,
+      publish_date: book.publish_date
+    }
+  end
+  FileUtils.mkdir_p('data')
+  File.new('data/books.json', 'w') unless File.exist?('data/books.json')
+  File.write('data/books.json', JSON.generate(book_store))
+end
+
