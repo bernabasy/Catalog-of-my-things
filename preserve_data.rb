@@ -55,3 +55,51 @@ def store_game
   File.new('data/games.json', 'w') unless File.exist?('data/games.json')
   File.write('data/games.json', JSON.generate(game_store))
 end
+
+def store_books
+  book_store = @books.map do |book|
+    {
+      name: book.name,
+      publisher: book.publisher,
+      cover_state: book.cover_state,
+      publish_date: book.publish_date
+    }
+  end
+  FileUtils.mkdir_p('data')
+  File.new('data/books.json', 'w') unless File.exist?('data/books.json')
+  File.write('data/books.json', JSON.generate(book_store))
+end
+
+def list_booka
+  return unless File.exist?('data/books.json')
+
+  books = JSON.parse(File.read('data/books.json'))
+
+  books.each do |book|
+    book = Book.new(book['name'], book['publisher'], book['cover_state'], book['publish_date'])
+    @books << book
+  end
+end
+
+def store_labels
+  store_label = @labels.map do |label|
+    {
+      title: label.title,
+      color: label.color
+    }
+  end
+  FileUtils.mkdir_p('data')
+  File.new('data/music_albums.json', 'w') unless File.exist?('data/music_albums.json')
+  File.write('data/labels.json', JSON.generate(store_label))
+end
+
+def feach_labels
+  return unless File.exist?('data/labels.json')
+
+  labels = JSON.parse(File.read('data/labels.json'))
+
+  labels.each do |label|
+    label = Label.new(label['title'], label['color'])
+    @labels << label
+  end
+end
