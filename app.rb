@@ -17,7 +17,7 @@ class App
     @games = []
     @authors = []
 
-    feach_labels
+    # feach_labels
     list_booka
     load_music_album
     load_genre
@@ -62,6 +62,7 @@ class App
       @books.each do |book|
         print "name: #{book.name}, publisher: #{book.publisher}, "
         puts "cover_State: #{book.cover_state}, pulish_date: #{book.publish_date}"
+        puts "[author:#{book.author.first_name} #{book.author.last_name}]"
       end
     end
   end
@@ -69,6 +70,8 @@ class App
   def add_book
     puts 'please enter book name'
     name = gets.chomp
+    puts 'Please enter book author information'
+    author = add_author
     puts 'please enter publisher name'
     publisher = gets.chomp
     puts 'please enter cover_State as: good or bad'
@@ -83,6 +86,7 @@ class App
     publish_date = gets.chomp
 
     one_book = Book.new(name, publisher, cover_state, publish_date)
+    one_book.add_author(author)
     @books.push(one_book)
     puts 'book created successfully'
     store_books
@@ -158,6 +162,7 @@ class App
     @authors << new_author
     puts 'Author added successfully'
     store_author
+    new_author
   end
 
   def add_game
