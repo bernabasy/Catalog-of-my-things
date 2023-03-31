@@ -5,8 +5,7 @@ CREATE TABLE items (
   id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   genre_id INT REFERENCES genre(id),
   author_id INT REFERENCES author(id),
-  source_id INT REFERENCES source(id),
-  label_id INT REFERENCES label(id),
+  label_id INT REFERENCES labels(id),
   publish_date DATE,
   archived BOOLEAN
 );
