@@ -255,18 +255,16 @@ class App
       @books.each do |book|
         print "name: #{book.name}, publisher: #{book.publisher}, "
         puts "cover_State: #{book.cover_state}, pulish_date: #{book.publish_date}"
-        #code added
+        # code added
         puts "[author:#{book.author.first_name} #{book.author.last_name}]"
-        #
       end
     end
   end
 
   def add_book
     # code added
-    puts "Please enter book author information"
+    puts 'Please enter book author information'
     author = add_author
-    #
 
     puts 'please enter book name'
     name = gets.chomp
@@ -286,7 +284,6 @@ class App
     one_book = Book.new(name, publisher, cover_state, publish_date)
     # code added
     one_book.add_author(author)
-    #
     @books.push(one_book)
     puts 'book created successfully'
     store_books
@@ -363,7 +360,7 @@ class App
     puts 'Author added successfully'
     store_author
     # code added
-    return new_author
+    new_author
   end
 
   def add_game

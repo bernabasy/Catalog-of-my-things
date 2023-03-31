@@ -234,10 +234,9 @@ def store_books
       publisher: book.publisher,
       cover_state: book.cover_state,
       publish_date: book.publish_date,
-      #code added
+      # code added
       author_first_name: book.author.first_name,
       author_last_name: book.author.last_name
-      #
     }
   end
   Dir.mkdir('data') unless File.directory?('data')
@@ -254,9 +253,8 @@ def list_booka
     # update
     new_book = Book.new(book['name'], book['publisher'], book['cover_state'], book['publish_date'])
     # code added and updated
-    author = Author.new(book["author_first_name"], book["author_last_name"])
+    author = Author.new(book['author_first_name'], book['author_last_name'])
     new_book.add_author(author)
-    #
     @books << new_book
   end
 end
