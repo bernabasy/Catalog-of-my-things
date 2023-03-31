@@ -70,7 +70,7 @@ class App
   def add_book
     puts 'please enter book name'
     name = gets.chomp
-    puts "Please enter book author information"
+    puts 'Please enter book author information'
     author = add_author
     puts 'please enter publisher name'
     publisher = gets.chomp
@@ -162,7 +162,7 @@ class App
     @authors << new_author
     puts 'Author added successfully'
     store_author
-    return new_author
+    new_author
   end
 
   def add_game

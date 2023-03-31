@@ -112,7 +112,7 @@ def list_booka
 
   books.each do |book|
     new_book = Book.new(book['name'], book['publisher'], book['cover_state'], book['publish_date'])
-    author = Author.new(book["author_first_name"], book["author_last_name"])
+    author = Author.new(book['author_first_name'], book['author_last_name'])
     new_book.add_author(author)
     @books << new_book
   end
