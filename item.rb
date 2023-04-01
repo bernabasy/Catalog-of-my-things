@@ -21,9 +21,9 @@ class Item
     @archived = can_be_archived?
   end
 
-  def add_author=(author)
+  def add_author(author)
     @author = author
-    author.items.push(self) unless author.items.include?(self)
+    @author.add_item(self) unless @author.items.include?(self)
   end
 
   def add_label=(label)
