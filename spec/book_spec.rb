@@ -13,7 +13,7 @@ RSpec.describe Book do
 
     context 'when the cover state is bad' do
       it 'returns true' do
-        allow(book).to receive(:publish_date).and_return(Date.today.to_s) # assumes today's date is 2023-03-28
+        allow(Date).to receive(:today).and_return(Date.parse('2023-03-28'))
         allow(book).to receive(:bad_cover?).and_return(true)
         expect(book.can_be_archived?).to eq(true)
       end
