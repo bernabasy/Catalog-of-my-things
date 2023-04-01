@@ -25,32 +25,12 @@ class App
     load_author
   end
 
-  def list_music_albums
-    if @albums.empty?
-      puts 'No music albums'
-    else
-      @albums.each do |album|
-        puts "Publish Date: #{album.publish_date}, On Spotify: #{album.on_spotify}"
-      end
-    end
-  end
-
   def list_labels
     if @labels.empty?
       puts 'labels not found'
     else
       @labels.each do |label|
         puts "title: #{label.title}, color: #{label.color}"
-      end
-    end
-  end
-
-  def list_genres
-    if @genres.empty?
-      puts 'No genres present'
-    else
-      @genres.each do |genre|
-        puts "Genre Name: #{genre.name}"
       end
     end
   end
@@ -102,31 +82,6 @@ class App
     @labels.push(create_label)
     puts 'label created successfully'
     store_labels
-  end
-
-  def fetch_album_details
-    print 'Publish Date: '
-    date = gets.chomp
-    print 'Is it on Spotify? (true/false): '
-    spotify_value = gets.chomp
-    case spotify_value
-    when 'true'
-      on_spotify = true
-    when 'false'
-      on_spotify = false
-    else
-      puts "Invalid value detected: #{spotify_value}"
-      exit
-    end
-    { date: date, on_spotify: on_spotify }
-  end
-
-  def add_music_album
-    album_details = fetch_album_details
-    each_album = MusicAlbum.new(album_details[:date], album_details[:on_spotify])
-    @albums << each_album
-    puts 'Album successfully added'
-    store_music_album
   end
 
   def fetch_genre_details
@@ -192,6 +147,61 @@ class App
     else
       @games.each do |game|
         puts "Publish Date: #{game.publish_date}, Multiplayer: #{game.multiplayer}, Last Played: #{game.last_played_at}"
+      end
+    end
+  end
+
+  def fetch_album_details
+    print 'Publish Date: '
+    date = gets.chomp
+    print 'Is it on Spotify? (true/false): '
+    spotify_value = gets.chomp
+    case spotify_value
+    when 'true'
+      on_spotify = true
+    when 'false'
+      on_spotify = false
+    else
+      puts "Invalid value detected: #{spotify_value}"
+      exit
+    end
+    { date: date, on_spotify: on_spotify }
+  end
+
+  def add_music_album
+    puts 'Enter album name:'
+    name = gets.chomp
+    album_details = fetch_album_details
+    puts 'Enter the name of the genre for this album:'
+    genre_name = gets.chomp
+    genre = @genres.find { |g| g.name == genre_name }
+    if genre.nil?
+      genre = Genre.new(genre_name)
+      @genres << genre
+    end
+    each_album = MusicAlbum.new(album_details[:date], album_details[:on_spotify], name, genre.name)
+    @albums << each_album
+    puts 'Album successfully added'
+    store_music_album
+  end
+
+  def list_music_albums
+    if @albums.empty?
+      puts 'No music albums'
+    else
+      @albums.each do |album|
+        album.genre
+        puts "Date: #{album.publish_date},  On Spotify: #{album.on_spotify}, Name: #{album.name}, Genre: #{album.genre}"
+      end
+    end
+  end
+
+  def list_genres
+    if @genres.empty?
+      puts 'No genres present'
+    else
+      @genres.each do |genre|
+        puts "Genre Name: #{genre.name}"
       end
     end
   end

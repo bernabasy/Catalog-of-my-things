@@ -4,7 +4,9 @@ def store_music_album
   music_album_store = @albums.map do |album|
     {
       publish_date: album.publish_date,
-      on_spotify: album.on_spotify
+      on_spotify: album.on_spotify,
+      name: album.name,
+      genre_name: album.genre
     }
   end
   Dir.mkdir('data') unless File.directory?('data')
@@ -17,7 +19,7 @@ def load_music_album
 
   albums = JSON.parse(File.read('data/music_albums.json'))
   albums.each do |album|
-    album = MusicAlbum.new(album['publish_date'], album['on_spotify'])
+    album = MusicAlbum.new(album['publish_date'], album['on_spotify'], album['name'], album['genre'])
     @albums << album
   end
 end
@@ -25,7 +27,8 @@ end
 def store_genre
   genre_store = @genres.map do |genre|
     {
-      name: genre.name
+      name: genre.name,
+      items: genre.items.map(&:name)
     }
   end
   Dir.mkdir('data') unless File.directory?('data')
