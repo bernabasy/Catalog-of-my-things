@@ -66,8 +66,8 @@ def load_games
 
   games = JSON.parse(File.read('data/games.json'))
   games.each do |game|
-    game = Game.new(game['publish_date'], game['multiplayer'], game['last_played_at'])
     label = Label.new(game['label_title'], game['label_color'])
+    game = Game.new(game['publish_date'], game['multiplayer'], game['last_played_at'])
     game.add_label(label)
     @games << game
   end
