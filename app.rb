@@ -17,7 +17,7 @@ class App
     @games = []
     @authors = []
 
-    # feach_labels
+    feach_labels
     list_booka
     load_music_album
     load_genre
@@ -82,6 +82,7 @@ class App
     @labels.push(create_label)
     puts 'label created successfully'
     store_labels
+    create_label
   end
 
   def fetch_genre_details
@@ -123,6 +124,8 @@ class App
   def add_game
     puts 'Publish Date: '
     pub_date = gets.chomp
+    puts 'Select lable '
+    label = add_label
     puts 'Multiplayer? (Y/N): '
     multiplayer = gets.chomp
     if %w[Y y].include?(multiplayer)
@@ -136,6 +139,7 @@ class App
     puts 'Date last played: '
     last_played = gets.chomp
     new_game = Game.new(pub_date, is_multiplayer, last_played)
+    new_game.add_label(label)
     @games << new_game
     puts 'Game added successfully'
     store_game
@@ -147,6 +151,7 @@ class App
     else
       @games.each do |game|
         puts "Publish Date: #{game.publish_date}, Multiplayer: #{game.multiplayer}, Last Played: #{game.last_played_at}"
+        puts "Label:#{game.label.title}, #{game.label.color}"
       end
     end
   end
