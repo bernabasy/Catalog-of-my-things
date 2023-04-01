@@ -25,16 +25,6 @@ class App
     load_author
   end
 
-  # def list_music_albums
-  #   if @albums.empty?
-  #     puts 'No music albums'
-  #   else
-  #     @albums.each do |album|
-  #       puts "Publish Date: #{album.publish_date}, On Spotify: #{album.on_spotify}"
-  #     end
-  #   end
-  # end
-
   def list_labels
     if @labels.empty?
       puts 'labels not found'
@@ -44,16 +34,6 @@ class App
       end
     end
   end
-
-  # def list_genres
-  #   if @genres.empty?
-  #     puts 'No genres present'
-  #   else
-  #     @genres.each do |genre|
-  #       puts "Genre Name: #{genre.name}"
-  #     end
-  #   end
-  # end
 
   def list_books
     if @books.empty?
@@ -103,16 +83,6 @@ class App
     puts 'label created successfully'
     store_labels
   end
-
-  
-
-  # def add_music_album
-  #   album_details = fetch_album_details
-  #   each_album = MusicAlbum.new(album_details[:date], album_details[:on_spotify])
-  #   @albums << each_album
-  #   puts 'Album successfully added'
-  #   store_music_album
-  # end
 
   def fetch_genre_details
     print 'Name: '
@@ -220,7 +190,7 @@ class App
       puts 'No music albums'
     else
       @albums.each do |album|
-        genre_name = album.genre 
+        album.genre
         puts "Date: #{album.publish_date},  On Spotify: #{album.on_spotify}, Name: #{album.name}, Genre: #{album.genre}"
       end
     end
