@@ -51,7 +51,9 @@ def store_game
     {
       publish_date: game.publish_date,
       multiplayer: game.multiplayer,
-      last_played_at: game.last_played_at
+      last_played_at: game.last_played_at,
+      label_title: game.label.title,
+      label_color: game.label.color
     }
   end
   Dir.mkdir('data') unless File.directory?('data')
@@ -65,6 +67,8 @@ def load_games
   games = JSON.parse(File.read('data/games.json'))
   games.each do |game|
     game = Game.new(game['publish_date'], game['multiplayer'], game['last_played_at'])
+    label = Label.new(game['label_title'], game['label_color'])
+    game.add_label(label)
     @games << game
   end
 end
@@ -119,4 +123,27 @@ def list_booka
     new_book.add_author(author)
     @books << new_book
   end
+end
+
+def feach_labels
+  return unless File.exist?('data/labels.json')
+
+  labels = JSON.parse(File.read('data/labels.json'))
+
+  labels.each do |label|
+    label = Label.new(label['title'], label['color'])
+    @labels << label
+  end
+end
+
+def store_labels
+  store_label = @labels.map do |label|
+    {
+      title: label.title,
+      color: label.color
+    }
+  end
+  Dir.mkdir('data') unless File.directory?('data')
+  File.new('data/labels.json', 'w') unless File.exist?('data/labels.json')
+  File.write('data/labels.json', JSON.generate(store_label))
 end
