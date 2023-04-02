@@ -89,7 +89,7 @@ Install this project with:
 
 - Use this project as a step to learning to practice building backend applications with Ruby and OOP concepts.
 - > run `irb` from the terminal"
-- > then rb(main):001:0> `require_relative './main.rb'` (the file you want to test `eg './app.rb'`)
+- > then rb(ruby main.rb)'
 - > => true (this will show) press enter
 - > follow the prompts
 
