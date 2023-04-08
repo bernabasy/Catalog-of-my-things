@@ -74,7 +74,7 @@ Clone this repository to your desired folder:
 
 - Create a local directory where you can clone the project
 - Clone the project to your directory by running
-  - `https://github.com/bernabasy/Ruby_group_capstone.git`
+  - `https://github.com/bernabasy/Catalog-of-my-things.git`
 
 ### Install
 
