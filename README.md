@@ -89,8 +89,7 @@ Install this project with:
 
 - Use this project as a step to learning to practice building backend applications with Ruby and OOP concepts.
 - > run `irb` from the terminal"
-- > then rb(ruby main.rb)'
-- > => true (this will show) press enter
+- > then rb(ruby main.rb)
 - > follow the prompts
 
 ## 👥 Author <a name="authors"></a>
